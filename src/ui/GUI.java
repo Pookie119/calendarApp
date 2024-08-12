@@ -1,8 +1,7 @@
 package ui;
 
 import java.awt.*;
-
-
+import java.time.LocalDate;
 
 
 public class GUI {
@@ -14,24 +13,47 @@ public class GUI {
         f.setSize(600, 400);
         f.setLayout(new BorderLayout());
 
+        LocalDate date = LocalDate.of(2025,3,1);
+        LocalDate firstDayOfMonth = date.withDayOfMonth(1);
+        String month = String.valueOf(date.getMonth());
+        int monthLength = firstDayOfMonth.getMonth().length(date.isLeapYear());
+        int startDay = firstDayOfMonth.getDayOfWeek().getValue();
 
-        String[] label = {"Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"};
+        //Set up calendar label for month & days of the week
+        Panel topPanel = new Panel();
+        topPanel.setLayout(new BorderLayout());
+
+        Label monthLabel = new Label(month, Label.CENTER);
+        topPanel.add(monthLabel, BorderLayout.NORTH);
+
         Panel labelPanel = new Panel();
         labelPanel.setLayout(new GridLayout(1, 7));
 
+        String[] label = {"Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"};
         for (String day : label){
             labelPanel.add(new Label(day, Label.CENTER));
         }
-        f.add(labelPanel, BorderLayout.NORTH);
+        topPanel.add(labelPanel, BorderLayout.CENTER);
+
 
         Panel buttonPanel = new Panel();
-        buttonPanel.setLayout(new GridLayout(5, 7));
+        buttonPanel.setLayout(new GridLayout(6, 7)); // added extra row for months that start on weekend
+//        buttonPanel.addMouseListener(l);
 
-        for (int i = 0; i < (7 * 5); i++) {
-            Button button = new Button();
-            buttonPanel.add(button);
+        //Set up Blanks for days before the 1st of the month
+        for (int i = 1; i < startDay; i++){
+            buttonPanel.add(new Button(""));
         }
-        f.add(buttonPanel);
+
+        //Set up buttons on calendar for each day of the month
+        for (int day = 1; day <= monthLength; day++) {
+            buttonPanel.add(new Button(String.valueOf(day)));
+            }
+
+        //Add button panel to frame and set visible
+        f.add(topPanel, BorderLayout.NORTH);
+        f.add(buttonPanel, BorderLayout.CENTER);
+        buttonPanel.setForeground(Color.BLUE);
         f.setVisible(true);
     }
 }
