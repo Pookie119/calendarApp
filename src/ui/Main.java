@@ -15,16 +15,16 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        new GUI();
-        Scanner userEvent = new Scanner(System.in);
         Date d = new Date();
+        new GUI(d);
+        Scanner userEvent = new Scanner(System.in);
         System.out.println(d.currentDate().getMonth() + " " + d.getYear());
         d.printCalendar();
         System.out.println("\nToday's date is " + d.currentDate());
 
 
         // Add Events
-        Event morningMeeting = new Event(LocalTime.of(10, 0), 30, "Meeting With Bailey", LocalDate.of(2024, 8, 9));
+        Event morningMeeting = new Event(LocalTime.of(10, 0), 30, "Meeting With Bailey", LocalDate.of(2024, 8, 13));
         d.addEvent(morningMeeting);
 
         Event Game = new Event(LocalTime.of(20, 0), 300, "Pick fiber W Nick", LocalDate.of(2024, 8, 9));
