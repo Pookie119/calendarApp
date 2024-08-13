@@ -5,7 +5,10 @@ import model.Date;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.time.LocalDate;
+
 
 public class GUI {
     private Frame f;
@@ -20,9 +23,16 @@ public class GUI {
 
         setupTopPanel();
         setupButtonPanel();
+        setupEventDisplay();
 
-        eventDisplay = new TextArea(calendarDay.getEvents());
-        f.add(eventDisplay, BorderLayout.SOUTH);
+        f.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                f.dispose();
+                System.exit(0);
+            }
+        });
+
         f.setVisible(true);
     }
 
@@ -93,6 +103,25 @@ public class GUI {
             }
         });
         return dayButton;
+
+    }
+
+    private void setupEventDisplay(){
+        Panel eventPanel = new Panel();
+        eventPanel.setLayout(new BorderLayout());
+
+        eventDisplay = new TextArea(calendarDay.getEvents());
+        eventPanel.add(eventDisplay, BorderLayout.CENTER);
+
+        Panel buttonPanel = new Panel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        Button addEvent = new Button("Add Event");
+        Button removeEvent = new Button("Remove Event");
+        buttonPanel.add(addEvent);
+        buttonPanel.add(removeEvent);
+
+        eventPanel.add(buttonPanel, BorderLayout.SOUTH);
+        f.add(eventPanel, BorderLayout.SOUTH);
 
     }
 }
