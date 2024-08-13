@@ -20,17 +20,16 @@ public class Main {
         Scanner userEvent = new Scanner(System.in);
         System.out.println(d.currentDate().getMonth() + " " + d.getYear());
         d.printCalendar();
-        System.out.println("\nToday's date is " + d.currentDate());
 
 
         // Add Events
         Event morningMeeting = new Event(LocalTime.of(10, 0), 30, "Meeting With Bailey", LocalDate.of(2024, 8, 13));
         d.addEvent(morningMeeting);
 
-        Event Game = new Event(LocalTime.of(20, 0), 300, "Pick fiber W Nick", LocalDate.of(2024, 8, 9));
+        Event Game = new Event(LocalTime.of(20, 0), 300, "Pick fiber W Nick", LocalDate.of(2024, 8, 13));
         d.addEvent(Game);
 
-        Event dinnerWithSophie = new Event(LocalTime.of(18, 0), 180, "Dinner with Wifey", LocalDate.of(2024, 8, 10));
+        Event dinnerWithSophie = new Event(LocalTime.of(18, 0), 180, "Dinner with Wifey", LocalDate.of(2024, 8, 13));
         d.addEvent(dinnerWithSophie);
 
         System.out.println("\nYou have " + d.eventCount() + " events today." + "\n");

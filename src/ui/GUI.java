@@ -1,16 +1,19 @@
 package ui;
 
 import model.Date;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 public class GUI {
     private Frame f;
     private TextArea eventDisplay;
-    private Date d;
+    private Date calendarDay;
 
-    public GUI(Date d) {
-        this.d = d;
+    public GUI(Date calendarDay) {
+        this.calendarDay = calendarDay;
         f = new Frame("Calendar");
         f.setSize(600, 400);
         f.setLayout(new BorderLayout());
@@ -18,11 +21,10 @@ public class GUI {
         setupTopPanel();
         setupButtonPanel();
 
-        eventDisplay = new TextArea(d.getEvents());
+        eventDisplay = new TextArea(calendarDay.getEvents());
         f.add(eventDisplay, BorderLayout.SOUTH);
         f.setVisible(true);
     }
-
 
     private void setupTopPanel() {
         LocalDate date = LocalDate.now();
@@ -55,7 +57,6 @@ public class GUI {
 
         Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new GridLayout(6, 7)); // added extra row for months that start on weekend
-        buttonPanel.addMouseListener(l);
 
         //Set up Blanks for days before the 1st of the month
         for (int i = 1; i < startDay; i++) {
@@ -64,7 +65,9 @@ public class GUI {
 
         //Set up buttons on calendar for each day of the month
         for (int day = 1; day <= monthLength; day++) {
-            buttonPanel.add(new Button(String.valueOf(day)));
+            Button dayButton = getButton(day, firstDayOfMonth);
+            dayButton.setBackground(Color.WHITE);
+            buttonPanel.add(dayButton);
         }
 
         //Fill in remaining cells in grid with mt labels - Should fix alignment issue with added row
@@ -75,5 +78,21 @@ public class GUI {
         }
         f.add(buttonPanel, BorderLayout.CENTER);
         buttonPanel.setForeground(Color.BLUE);
+        buttonPanel.setBackground(Color.GRAY);
+
+    }
+    // getButton method to help with readbility & Added Action Listener to display events for selected day in the text area
+    private Button getButton(int day, LocalDate firstDayOfMonth) {
+        Button dayButton = new Button(String.valueOf(day));
+        dayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LocalDate selectedDate = firstDayOfMonth.withDayOfMonth(Integer.parseInt(e.getActionCommand()));
+                calendarDay.setDate(selectedDate);
+                eventDisplay.setText("Events for: " + selectedDate +'\n'+'\n'+ calendarDay.getEvents());
+            }
+        });
+        return dayButton;
+
     }
 }

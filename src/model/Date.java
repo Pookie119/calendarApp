@@ -17,6 +17,10 @@ public class Date {
         return myDate;
     }
 
+    public void setDate(LocalDate myDate){
+        this.myDate = myDate;
+    }
+
     //Add function to check if event already scheduled at same time
     public void addEvent(Event event) {
         events.add(event);
