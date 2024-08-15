@@ -29,7 +29,7 @@ public class Main {
         Event Game = new Event(LocalTime.of(20, 0), 300, "Pick fiber W Nick", LocalDate.of(2024, 8, 13));
         d.addEvent(Game);
 
-        Event dinnerWithSophie = new Event(LocalTime.of(18, 0), 180, "Dinner with Wifey", LocalDate.of(2024, 8, 13));
+        Event dinnerWithSophie = new Event(LocalTime.of(18, 0), 180, "Dinner with Wifey", LocalDate.of(2024, 8, 14));
         d.addEvent(dinnerWithSophie);
 
         System.out.println("\nYou have " + d.eventCount() + " events today." + "\n");

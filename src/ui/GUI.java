@@ -110,13 +110,32 @@ public class GUI {
         Panel eventPanel = new Panel();
         eventPanel.setLayout(new BorderLayout());
 
-        eventDisplay = new TextArea(calendarDay.getEvents());
+        eventDisplay = new TextArea();
         eventPanel.add(eventDisplay, BorderLayout.CENTER);
+
+        String todayEvents = calendarDay.getEvents();
+
+        eventDisplay.setText("Events for: " + calendarDay.currentDate() +'\n'+'\n'+ todayEvents);
 
         Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
         Button addEvent = new Button("Add Event");
+        addEvent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DialogBox dialog = new DialogBox(f, calendarDay);
+                dialog.setVisible(true);
+
+            }
+        });
         Button removeEvent = new Button("Remove Event");
+        removeEvent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+
         buttonPanel.add(addEvent);
         buttonPanel.add(removeEvent);
 
