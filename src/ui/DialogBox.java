@@ -1,30 +1,42 @@
 package ui;
 
-
 import model.Date;
+import model.Event;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class DialogBox extends Dialog {
 
     private TextField eventNameField;
     private TextField eventDescriptionField;
+    private TextField eventStartTime;
+    private TextField  eventDurationField;
     private Date calendarDay;
 
     public DialogBox(Frame owner, Date calendarDay) {
         super(owner, "New Event Information", true);
         this.calendarDay = calendarDay;
 
-        setLayout(new GridLayout(3, 2));
-        setSize(400, 300);
+        setLayout(new GridLayout(5, 2));
+        setSize(600,700);
 
         Label eventNameLabel = new Label("Event name: ");
         eventNameField = new TextField();
+        eventNameField.setSize(20,20);
 
         Label eventDescriptionLabel = new Label("Description");
         eventDescriptionField = new TextField();
+
+        Label eventStartTimeLabel = new Label("Start time (hh:mm)");
+        eventStartTime = new TextField();
+
+        Label eventDurationLabel = new Label("Duration (min)");
+        eventDurationField = new TextField();
 
         Button addButton = new Button("Add");
         Button cancelButton = new Button("Cancel");
@@ -33,6 +45,8 @@ public class DialogBox extends Dialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 handleAddEvent();
+                dispose();
+
 
             }
         });
@@ -43,20 +57,36 @@ public class DialogBox extends Dialog {
                 dispose();
             }
         });
+
         add(eventNameLabel);
         add(eventNameField);
         add(eventDescriptionLabel);
         add(eventDescriptionField);
+        add(eventStartTimeLabel);
+        add(eventStartTime);
+        add(eventDurationLabel);
+        add(eventDurationField);
         add(addButton);
         add(cancelButton);
-
-
     }
 
     private void handleAddEvent(){
+        String startTime = eventStartTime.getText();
         String eventName = eventNameField.getText();
         String eventDescription = eventDescriptionField.getText();
+        String durationText = eventDurationField.getText();
+        int duration = Integer.parseInt(durationText);
+        LocalDate eventDate = calendarDay.currentDate();
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime startTimeParsed;
+        startTimeParsed = LocalTime.parse(startTime, formatter);
+        Event newEvent = new Event(eventName, startTimeParsed, duration , eventDescription, eventDate);
+        calendarDay.addEvent(newEvent);
+        System.out.println(eventDate);
+
+        }
+//
+//
     }
 
-}
