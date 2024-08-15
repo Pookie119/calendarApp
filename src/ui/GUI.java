@@ -109,6 +109,7 @@ public class GUI {
     private void setupEventDisplay(){
         Panel eventPanel = new Panel();
         eventPanel.setLayout(new BorderLayout());
+        eventPanel.setSize(f.getWidth(), 10);
 
         eventDisplay = new TextArea();
         eventPanel.add(eventDisplay, BorderLayout.CENTER);

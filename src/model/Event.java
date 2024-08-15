@@ -4,12 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Event {
+    private String name;
     private LocalTime startTime;
     private int durationInHours;
     private String description;
     private LocalDate date;
 
-    public Event(LocalTime startTime, int durationInMinutes, String description, LocalDate date) {
+    public Event(String name, LocalTime startTime, int durationInMinutes, String description, LocalDate date) {
+        this.name = name;
         this.description = description;
     this.startTime = startTime;
     this.durationInHours = durationInMinutes;
