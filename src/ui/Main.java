@@ -11,7 +11,7 @@ public class Main {
         new GUI(d);
         Scanner userEvent = new Scanner(System.in);
         System.out.println(d.currentDate().getMonth() + " " + d.getYear());
-        d.printCalendar();
+
 
 
         // Add Events -- SHOULD BE IN JUNIT TESTS********
