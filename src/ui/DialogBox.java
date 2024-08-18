@@ -76,11 +76,11 @@ public class DialogBox extends Dialog {
         String eventDescription = eventDescriptionField.getText();
         String durationText = eventDurationField.getText();
         int duration = Integer.parseInt(durationText);
-        LocalDate eventDate = calendarDay.currentDate();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime startTimeParsed;
-        startTimeParsed = LocalTime.parse(startTime, formatter);
+        LocalTime startTimeParsed = LocalTime.parse(startTime, formatter);
+        LocalDate eventDate = calendarDay.currentDate();
+
         Event newEvent = new Event(eventName, startTimeParsed, duration , eventDescription, eventDate);
         calendarDay.addEvent(newEvent);
         System.out.println(eventDate);

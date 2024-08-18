@@ -18,7 +18,7 @@ public class GUI {
     public GUI(Date calendarDay) {
         this.calendarDay = calendarDay;
         f = new Frame("Calendar");
-        f.setSize(600, 400);
+        f.setExtendedState(Frame.MAXIMIZED_BOTH);
         f.setLayout(new BorderLayout());
 
         setupTopPanel();
@@ -97,9 +97,10 @@ public class GUI {
         dayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dayButton.setBackground(Color.getHSBColor(000,000,100));
                 LocalDate selectedDate = firstDayOfMonth.withDayOfMonth(Integer.parseInt(e.getActionCommand()));
                 calendarDay.setDate(selectedDate);
-                eventDisplay.setText("Events for: " + selectedDate +'\n'+'\n'+ calendarDay.getEvents());
+                eventDisplay.setText("Events for: " + selectedDate +'\n'+'\n'+ calendarDay.getEvents(selectedDate));
             }
         });
         return dayButton;
@@ -114,7 +115,7 @@ public class GUI {
         eventDisplay = new TextArea();
         eventPanel.add(eventDisplay, BorderLayout.CENTER);
 
-        String todayEvents = calendarDay.getEvents();
+        String todayEvents = calendarDay.getEvents(LocalDate.now());
 
         eventDisplay.setText("Events for: " + calendarDay.currentDate() +'\n'+'\n'+ todayEvents);
 
@@ -134,6 +135,7 @@ public class GUI {
         removeEvent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
             }
         });
 
