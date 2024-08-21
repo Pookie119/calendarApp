@@ -2,15 +2,17 @@ package ui;
 
 import model.Date;
 
-import java.util.Scanner;
+import java.nio.file.Path;
 
 
 public class Main {
     public static void main(String[] args) {
         Date d = new Date();
+        Path path = d.getDefaultPath();
+        d.load(path);
         new GUI(d);
-        Scanner userEvent = new Scanner(System.in);
-        System.out.println(d.currentDate().getMonth() + " " + d.getYear());
+//        Scanner userEvent = new Scanner(System.in);
+//        System.out.println(d.currentDate().getMonth() + " " + d.getYear());
 
 
 

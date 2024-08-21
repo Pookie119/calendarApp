@@ -25,6 +25,7 @@ public class GUI {
         setupButtonPanel();
         setupEventDisplay();
 
+
         f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -117,7 +118,7 @@ public class GUI {
 
         String todayEvents = calendarDay.getEvents(LocalDate.now());
 
-        eventDisplay.setText("Events for: " + calendarDay.currentDate() +'\n'+'\n'+ todayEvents);
+        eventDisplay.setText("Events for: " + calendarDay.currentDate() +'\n'+'\n'+ calendarDay.getEvents(calendarDay.currentDate()));
 
         Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -128,7 +129,6 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 DialogBox dialog = new DialogBox(f, calendarDay);
                 dialog.setVisible(true);
-
             }
         });
         Button removeEvent = new Button("Remove Event");
@@ -144,6 +144,7 @@ public class GUI {
 
         eventPanel.add(buttonPanel, BorderLayout.SOUTH);
         f.add(eventPanel, BorderLayout.SOUTH);
-
     }
+
+
 }

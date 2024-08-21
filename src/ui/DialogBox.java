@@ -84,6 +84,7 @@ public class DialogBox extends Dialog {
         Event newEvent = new Event(eventName, startTimeParsed, duration , eventDescription, eventDate);
         calendarDay.addEvent(newEvent);
         System.out.println(eventDate);
+        calendarDay.save();
 
         }
 //
