@@ -102,6 +102,7 @@ public class GUI {
                 LocalDate selectedDate = firstDayOfMonth.withDayOfMonth(Integer.parseInt(e.getActionCommand()));
                 calendarDay.setDate(selectedDate);
                 eventDisplay.setText("Events for: " + selectedDate +'\n'+'\n'+ calendarDay.getEvents(selectedDate));
+
             }
         });
         return dayButton;
