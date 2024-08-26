@@ -115,6 +115,10 @@ public class Date {
     }
 
     public void load(Path path) {
+        if (!Files.exists(path)){
+            save(path);
+        }
+
         String content = null;
         try {
             content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
