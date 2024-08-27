@@ -43,20 +43,25 @@ public class Event {
     public JSONObject toJsonObject() {
         JSONObject jo = new JSONObject();
         jo.put("name", name);
-        jo.put("StartTime", startTime);
-        jo.put("date", date);
+        jo.put("startTime", startTime.toString());
+        jo.put("date", date.toString());
         jo.put("duration", durationInHours);
         jo.put("description", description);
         return jo;
     }
 
     public static Event fromJsonObject(JSONObject jo) {
-        String name = (String) jo.get("description");
-        LocalTime timeStr = LocalTime.parse((String) jo.get("StartTime"));
-        LocalDate eventDate = LocalDate.parse((String) jo.get("date"));
-        int duration = ((Long) jo.get("duration")).intValue();
-        String description = (String) jo.get("description");
-        return new Event(name, timeStr, duration, description, eventDate);
+        try {
+            String name = (String) jo.get("name");
+            LocalTime timeStr = LocalTime.parse((String) jo.get("startTime"));
+            LocalDate eventDate = LocalDate.parse((String) jo.get("date"));
+            int duration = ((Long) jo.get("duration")).intValue();
+            String description = (String) jo.get("description");
+            return new Event(name, timeStr, duration, description, eventDate);
+        } catch (Exception e) {
+            System.err.println("Error parsing JSON obj: " + jo.toJSONString());
+            throw e;
+        }
     }
 }
 
