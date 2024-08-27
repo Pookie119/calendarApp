@@ -92,21 +92,26 @@ public class GUI {
         buttonPanel.setBackground(Color.GRAY);
 
     }
+
+    private Button currentlySelectedButton = null;
+
     // getButton method to help with readbility & Added Action Listener to display events for selected day in the text area
     private Button getButton(int day, LocalDate firstDayOfMonth) {
         Button dayButton = new Button(String.valueOf(day));
         dayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(currentlySelectedButton != null){
+                    currentlySelectedButton.setBackground(Color.WHITE);
+                }
                 dayButton.setBackground(Color.getHSBColor(000,000,100));
+                currentlySelectedButton = dayButton;
                 LocalDate selectedDate = firstDayOfMonth.withDayOfMonth(Integer.parseInt(e.getActionCommand()));
                 calendarDay.setDate(selectedDate);
                 eventDisplay.setText("Events for: " + selectedDate +'\n'+'\n'+ calendarDay.getEvents(selectedDate));
             }
         });
         return dayButton;
-
-
     }
 
     private void setupEventDisplay(){
@@ -130,9 +135,9 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 DialogBox dialog = new DialogBox(f, calendarDay);
                 dialog.setVisible(true);
-
             }
         });
+
         Button removeEvent = new Button("Remove Event");
         removeEvent.addActionListener(new ActionListener() {
             @Override
