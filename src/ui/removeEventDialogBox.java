@@ -13,7 +13,7 @@ public class removeEventDialogBox extends Dialog {
     private Date calendarDay;
 
     public removeEventDialogBox(Frame owner, Date calendarDay) {
-        super(owner, "New Event Information", true);
+        super(owner, "Event Information", true);
         this.calendarDay = calendarDay;
 
         setLayout(new GridLayout(2 , 2));
@@ -52,6 +52,7 @@ public class removeEventDialogBox extends Dialog {
         LocalDate eventDate = calendarDay.currentDate();
         calendarDay.removeEvent(eventName, eventDate);
         calendarDay.save();
+
 
     }
 }
