@@ -39,8 +39,8 @@ public class Date {
         events.put(eventDateTime, event);
     }
 
-    public void removeEvent(LocalDateTime dateTime) {
-        events.remove(dateTime);
+    public void removeEvent(String eventName, LocalDate date) {
+        events.entrySet().removeIf(entry -> entry.getKey().toLocalDate().equals(date) && entry.getValue().equals(eventName));
     }
 
     public Integer eventCount(LocalDate date) {
@@ -54,7 +54,8 @@ public class Date {
             StringBuilder sb = new StringBuilder();
             events.forEach((dateTime, event) -> {
                 if (dateTime.toLocalDate().equals(date)) {
-                    sb.append(event.getDescription()).append("\n")
+                    sb.append(event.getName()).append("\n")
+                            .append(event.getDescription()).append("\n")
                             .append("Starts:").append(event.getStartTime())
                             .append(" Ends:").append(event.getEndTime()).append("\n" + "Duration: ").append(event.getDurationInHours()).append(" hours").append("\n\n");
                 }
@@ -67,36 +68,10 @@ public class Date {
         return currentDate().getYear();
     }
 
-//    public void printCalendar(LocalDate date) {
-//        LocalDate currentDate = currentDate();
-//        LocalDate firstDayOfMonth = currentDate.withDayOfMonth(1);
-//        int monthLength = firstDayOfMonth.getMonth().length(currentDate.isLeapYear());
-//        int firstDayOfWeek = firstDayOfMonth.getDayOfWeek().getValue();
-//
-//
-//        // print out header
-//        System.out.println("Mon Tue Wed Thur Fri Sat Sun");
-//
-//        for (int i = 1; i < firstDayOfWeek; i++) {
-//            System.out.print("    ");
-//        }
-//
-//        for (int day = 1; day <= monthLength; day++) {
-//            System.out.printf("%3d ", day);
-//            if ((day + firstDayOfWeek - 1) % 7 == 0) {
-//                System.out.println();
-//            }
-//        }
-//        if ((monthLength + firstDayOfWeek - 1) % 7 != 0) {
-//            System.out.println();
-//        }
-//    }
-
     public Path getDefaultPath() {
         String home = System.getProperty("user.home");
         return Paths.get(home).resolve("calendar.json");
     }
-
 
     public void save() {
         save(getDefaultPath());

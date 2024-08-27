@@ -20,6 +20,10 @@ public class Event {
         this.date = date;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public LocalTime getStartTime() {
         return startTime;
     }
