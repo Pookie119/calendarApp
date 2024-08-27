@@ -32,6 +32,7 @@ public class Date {
     //Add function to check if event already scheduled at same time
     public void addEvent(Event event) {
         LocalDateTime eventDateTime = LocalDateTime.of(event.getDate(), event.getStartTime());
+
         if (events.containsKey(eventDateTime)) {
             JOptionPane.showMessageDialog(null, "Event already booked at this time.");
             return;
@@ -40,7 +41,7 @@ public class Date {
     }
 
     public void removeEvent(String eventName, LocalDate date) {
-        events.entrySet().removeIf(entry -> entry.getKey().toLocalDate().equals(date) && entry.getValue().equals(eventName));
+        events.entrySet().removeIf(entry -> entry.getKey().toLocalDate().equals(date) && entry.getValue().getName().equals(eventName));
     }
 
     public Integer eventCount(LocalDate date) {
@@ -48,6 +49,7 @@ public class Date {
     }
 
     public String getEvents(LocalDate date) {
+
         if (events.isEmpty()) {
             return "Nothing Planned!";
         } else {
