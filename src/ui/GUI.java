@@ -102,10 +102,10 @@ public class GUI {
                 LocalDate selectedDate = firstDayOfMonth.withDayOfMonth(Integer.parseInt(e.getActionCommand()));
                 calendarDay.setDate(selectedDate);
                 eventDisplay.setText("Events for: " + selectedDate +'\n'+'\n'+ calendarDay.getEvents(selectedDate));
-
             }
         });
         return dayButton;
+
 
     }
 
@@ -130,6 +130,7 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 DialogBox dialog = new DialogBox(f, calendarDay);
                 dialog.setVisible(true);
+
             }
         });
         Button removeEvent = new Button("Remove Event");
