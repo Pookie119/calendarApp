@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class DialogBox extends Dialog {
+public class addEventDialogBox extends Dialog {
 
     private TextField eventNameField;
     private TextField eventDescriptionField;
@@ -18,7 +18,7 @@ public class DialogBox extends Dialog {
     private TextField  eventDurationField;
     private Date calendarDay;
 
-    public DialogBox(Frame owner, Date calendarDay) {
+    public addEventDialogBox(Frame owner, Date calendarDay) {
         super(owner, "New Event Information", true);
         this.calendarDay = calendarDay;
 

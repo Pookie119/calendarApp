@@ -133,7 +133,7 @@ public class GUI {
         addEvent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DialogBox dialog = new DialogBox(f, calendarDay);
+                addEventDialogBox dialog = new addEventDialogBox(f, calendarDay);
                 dialog.setVisible(true);
             }
         });
@@ -142,7 +142,7 @@ public class GUI {
         removeEvent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DialogBox dialog = new DialogBox(f, calendarDay);
+                removeEventDialogBox dialog = new removeEventDialogBox(f, calendarDay);
                 dialog.setVisible(true);
             }
         });
