@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -15,7 +16,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.TreeMap;
-
 
 public class Date {
     LocalDate myDate = LocalDate.now();
@@ -33,7 +33,8 @@ public class Date {
     public void addEvent(Event event) {
         LocalDateTime eventDateTime = LocalDateTime.of(event.getDate(), event.getStartTime());
         if (events.containsKey(eventDateTime)) {
-//            doubleBookedEventTime();
+            JOptionPane.showMessageDialog(null, "Event already booked at this time.");
+            return;
         }
         events.put(eventDateTime, event);
     }

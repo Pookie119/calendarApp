@@ -137,7 +137,8 @@ public class GUI {
         removeEvent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                DialogBox dialog = new DialogBox(f, calendarDay);
+                dialog.setVisible(true);
             }
         });
 
