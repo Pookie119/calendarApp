@@ -131,7 +131,7 @@ public class GUI {
                 currentlySelectedButton = dayButton;
                 LocalDate selectedDate = firstDayOfMonth.withDayOfMonth(Integer.parseInt(e.getActionCommand()));
                 calendarDay.setDate(selectedDate);
-                eventDisplay.setText("Events for today: ");
+                eventDisplay.setText("Events for today: "+ selectedDate +'\n'+'\n'+ calendarDay.getEvents(selectedDate));
             }
         });
         return dayButton;
