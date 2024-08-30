@@ -14,6 +14,7 @@ public class GUI {
     private Frame f;
     private TextArea eventDisplay;
     private Date calendarDay;
+    private Panel buttonPanel;
 
     public GUI(Date calendarDay) {
         this.calendarDay = calendarDay;
@@ -22,7 +23,7 @@ public class GUI {
         f.setLayout(new BorderLayout());
 
         setupTopPanel();
-        setupButtonPanel();
+        setupButtonPanel(LocalDate.now());
         setupEventDisplay();
 
 
@@ -44,6 +45,8 @@ public class GUI {
 
         int currentYear = LocalDate.now().getYear();
         CalendarSelector = new calendarSelector(currentYear, 2050);
+
+        CalendarSelector.setMonthYearSelectionListener(newDate -> setupButtonPanel(newDate));
 
         //Set up calendar label for month & days of the week
         Panel topPanel = new Panel();
@@ -67,13 +70,18 @@ public class GUI {
         f.add(topPanel, BorderLayout.NORTH);
     }
 
-    private void setupButtonPanel() {
-        LocalDate date = LocalDate.now();
-        LocalDate firstDayOfMonth = date.withDayOfMonth(1);
-        int monthLength = firstDayOfMonth.getMonth().length(date.isLeapYear());
+    private void setupButtonPanel(LocalDate selectedDate) {
+        int selectedMonth = selectedDate.getMonthValue();
+        int selectedYear = selectedDate.getYear();
+        LocalDate firstDayOfMonth = LocalDate.of(selectedYear,selectedMonth,1);
+        int monthLength = firstDayOfMonth.getMonth().length(firstDayOfMonth.isLeapYear());
         int startDay = firstDayOfMonth.getDayOfWeek().getValue();
 
-        Panel buttonPanel = new Panel();
+        if (buttonPanel != null){
+            f.remove(buttonPanel);
+        }
+
+        buttonPanel = new Panel();
         buttonPanel.setLayout(new GridLayout(6, 7)); // added extra row for months that start on weekend
 
         //Set up Blanks for days before the 1st of the month
@@ -96,9 +104,12 @@ public class GUI {
             buttonPanel.add(new Label(""));
         }
 
+        //Refresh calendar with user selected month and year
         f.add(buttonPanel, BorderLayout.CENTER);
         buttonPanel.setForeground(Color.BLUE);
         buttonPanel.setBackground(Color.GRAY);
+        f.validate();
+        f.repaint();
 
     }
 
@@ -120,7 +131,7 @@ public class GUI {
                 currentlySelectedButton = dayButton;
                 LocalDate selectedDate = firstDayOfMonth.withDayOfMonth(Integer.parseInt(e.getActionCommand()));
                 calendarDay.setDate(selectedDate);
-                eventDisplay.setText("Events for: " + selectedDate +'\n'+'\n'+ calendarDay.getEvents(selectedDate));
+                eventDisplay.setText("Events for today: ");
             }
         });
         return dayButton;
@@ -136,7 +147,7 @@ public class GUI {
 
         String todayEvents = calendarDay.getEvents(LocalDate.now());
 
-        eventDisplay.setText("Events for: " + calendarDay.currentDate() +'\n'+'\n'+ calendarDay.getEvents(calendarDay.currentDate()));
+        eventDisplay.setText("Events for today: ");
 
         Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
