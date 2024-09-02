@@ -40,9 +40,6 @@ public class GUI {
     private calendarSelector CalendarSelector;
 
     private void setupTopPanel() {
-        LocalDate date = LocalDate.now();
-        String month = String.valueOf(date.getMonth());
-
         int currentYear = LocalDate.now().getYear();
         CalendarSelector = new calendarSelector(currentYear, 2050);
 
@@ -86,7 +83,9 @@ public class GUI {
 
         //Set up Blanks for days before the 1st of the month
         for (int i = 1; i < startDay; i++) {
-            buttonPanel.add(new Label("")); //Changed from button to label to make more intuitive
+            Label emptyLabel = new Label("");
+            emptyLabel.setBackground(Color.GRAY);
+            buttonPanel.add(emptyLabel); //Changed from button to label to make more intuitive
         }
 
         //Set up buttons on calendar for each day of the month
@@ -101,7 +100,9 @@ public class GUI {
         int filledCells = startDay - 1 + monthLength;
 
         for (int i = filledCells; i < totalCells; i++) {
-            buttonPanel.add(new Label(""));
+            Label emptyLabel = new Label("");
+            emptyLabel.setBackground(Color.GRAY);
+            buttonPanel.add(emptyLabel);
         }
 
         //Refresh calendar with user selected month and year
@@ -123,10 +124,12 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                //Check to see if a dayButton has already been clicked and resets it's color to white
                 if(currentlySelectedButton != null){
                     currentlySelectedButton.setBackground(Color.WHITE);
                 }
 
+                //Highlights selected dayButton in yellow and displays to the user all events(sorted) for that day
                 dayButton.setBackground(Color.getHSBColor(000,000,100));
                 currentlySelectedButton = dayButton;
                 LocalDate selectedDate = firstDayOfMonth.withDayOfMonth(Integer.parseInt(e.getActionCommand()));
@@ -137,6 +140,8 @@ public class GUI {
         return dayButton;
     }
 
+    //Set up text display area at bottom of the calendar
+
     private void setupEventDisplay(){
         Panel eventPanel = new Panel();
         eventPanel.setLayout(new BorderLayout());
@@ -145,13 +150,15 @@ public class GUI {
         eventDisplay = new TextArea();
         eventPanel.add(eventDisplay, BorderLayout.CENTER);
 
+        //Get events for the current date & displays them as the default when launching the app
         String todayEvents = calendarDay.getEvents(LocalDate.now());
 
-        eventDisplay.setText("Events for today: " + todayEvents);
+        eventDisplay.setText("Events for today: " + calendarDay.currentDate() + '\n' + todayEvents);
 
         Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
+        //Alow the user to add a new event to a selected date
         Button addEvent = new Button("Add Event");
 
         addEvent.addActionListener(new ActionListener() {
@@ -164,6 +171,7 @@ public class GUI {
             }
         });
 
+        //Allow the usre to remove an event on the selected date by name
         Button removeEvent = new Button("Remove Event");
 
         removeEvent.addActionListener(new ActionListener() {
@@ -184,11 +192,10 @@ public class GUI {
         f.add(eventPanel, BorderLayout.SOUTH);
     }
 
+    //Refresh the calendar after adding or removing an event
     private void refreshCalendar() {
         LocalDate selectedDate = calendarDay.currentDate();
         String updatedEvents = calendarDay.getEvents(selectedDate);
         eventDisplay.setText("Events for today: " + selectedDate + '\n' + '\n' + updatedEvents);
     }
-
-
 }
