@@ -85,9 +85,8 @@ public class addEventDialogBox extends Dialog {
         calendarDay.addEvent(newEvent);
         System.out.println(eventDate);
         calendarDay.save();
-
         }
-//
-//
+
+
     }
 

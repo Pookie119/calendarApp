@@ -25,6 +25,7 @@ public class Date {
         return myDate;
     }
 
+
     public void setDate(LocalDate myDate) {
         this.myDate = myDate;
     }
@@ -89,7 +90,7 @@ public class Date {
         } catch (IOException e) {
             throw new RuntimeException("Failed to save", e);
         }
-
+        load(path);
     }
 
     public void load(Path path) {
