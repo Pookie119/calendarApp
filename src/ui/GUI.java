@@ -147,7 +147,7 @@ public class GUI {
 
         String todayEvents = calendarDay.getEvents(LocalDate.now());
 
-        eventDisplay.setText("Events for today: ");
+        eventDisplay.setText("Events for today: " + todayEvents);
 
         Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -159,6 +159,8 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 addEventDialogBox dialog = new addEventDialogBox(f, calendarDay);
                 dialog.setVisible(true);
+                refreshCalendar();
+                f.repaint();
             }
         });
 
@@ -169,6 +171,9 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 removeEventDialogBox dialog = new removeEventDialogBox(f, calendarDay);
                 dialog.setVisible(true);
+                refreshCalendar();
+                f.repaint();
+
             }
         });
 
@@ -177,6 +182,12 @@ public class GUI {
 
         eventPanel.add(buttonPanel, BorderLayout.SOUTH);
         f.add(eventPanel, BorderLayout.SOUTH);
+    }
+
+    private void refreshCalendar() {
+        LocalDate selectedDate = calendarDay.currentDate();
+        String updatedEvents = calendarDay.getEvents(selectedDate);
+        eventDisplay.setText("Events for today: " + selectedDate + '\n' + '\n' + updatedEvents);
     }
 
 
