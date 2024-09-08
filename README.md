@@ -29,6 +29,8 @@ MyCalendar App is a Java-based application designed to help users manage their s
 
 ## Installation
 
-**Clone Repo:** Begin by cloning this repo.
+**Clone Repo:** Begin by cloning this repo:
 > git clone https://github.com/Pookie119/calendarApp.git
+
+
 
