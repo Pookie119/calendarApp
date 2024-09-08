@@ -18,8 +18,12 @@ MyCalendar App is a Java-based application designed to help users manage their s
 **Real-Time Updating:** The calendar interface is immediately updated following the removal or adding of a event.
 
 ## Technologies Used
+
 **Java:** This was the core programming language used for developing the application.
+
 **AWT (Abstract Window Toolkit):** Used to create the app's GUI.
-**Java Collections Framework:** Used for management of the users events. Specifically by utilizing a map structure for efficient starage and retrival
+
+**Java Collections Framework:** Used for management of the users events. Specifically by utilizing a map structure for efficient starage and retrival.
+
 **JSON:** Utilized for reading and writting event data to files in JSON format so that user events where properly stored and not lost between app uses.
 
