@@ -5,12 +5,11 @@ Welcome to MyCalendarApp - My very first full-fledged project as a self-taught, 
 
 MyCalendar App is a Java-based application designed to help users manage their schedules by adding, removing, and viewing events on a calendar. The application features a GUI implemented using AWT, allowing users to interact with the calendar visually.
 
-## App Features
--**Add Events:** Allows the user to schedule specific events on a specific date and time.
--**Remove Events:** Allows the user to simply delete a scheduled event.
--**Month & Year Navigation:** Allows for the ability to select any month and any year from the current up until 2050.
--**Event Conflict:** The program will warn the user if they are double booking a time slot by checking if an exsiting event is already scheduled at the same time and date.
--**Real-Time Updating:** The calendar interface is immediately updated following the removal or adding of a event.
+1.**Add Events:** Allows the user to schedule specific events on a specific date and time.
+2.**Remove Events:** Allows the user to simply delete a scheduled event.
+3.**Month & Year Navigation:** Allows for the ability to select any month and any year from the current up until 2050.
+4.**Event Conflict:** The program will warn the user if they are double booking a time slot by checking if an exsiting event is already scheduled at the same time and date.
+5.**Real-Time Updating:** The calendar interface is immediately updated following the removal or adding of a event.
 
 ## Technologies Used
 **Java:** This was the core programming language used for developing the application.
