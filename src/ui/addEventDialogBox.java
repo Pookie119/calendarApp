@@ -3,6 +3,7 @@ package ui;
 import model.Date;
 import model.Event;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -73,6 +74,10 @@ public class addEventDialogBox extends Dialog {
     private void handleAddEvent(){
         String startTime = eventStartTime.getText();
         String eventName = eventNameField.getText();
+        if (eventName == null || eventName.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Name cannot be empty");
+            return;
+        }
         String eventDescription = eventDescriptionField.getText();
         String durationText = eventDurationField.getText();
         int duration = Integer.parseInt(durationText);
