@@ -27,8 +27,6 @@ MyCalendar App is a Java-based application designed to help users manage their s
 
 **JSON:** Utilized for reading and writting event data to files in JSON format so that user events where properly stored and not lost between app uses.
 
-## Installation
+## Usage
 
-**Clone Repo:** Begin by cloning this repo.
-> git clone https://github.com/Pookie119/calendarApp.git
 
