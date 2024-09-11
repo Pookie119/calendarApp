@@ -19,7 +19,7 @@ MyCalendar App is a Java-based application designed to help users manage their s
 
 **Real-Time Updating:** The calendar interface is immediately updated following the removal or adding of a event.
 
-** Gray Buttons (Inactive Days):** These represent inactive days from the previous or next month, used to ensure that the first day of the current month is correctly aligned with the appropriate day of the week. 
+**Gray Buttons (Inactive Days):** These represent inactive days from the previous or next month, used to ensure that the first day of the current month is correctly aligned with the appropriate day of the week. 
 
 ## Technologies Used
 
