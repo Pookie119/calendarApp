@@ -11,9 +11,11 @@ MyCalendar App is a Java-based application designed to help users manage their s
 
 **Remove Events:** Allows the user to simply delete a scheduled event.
 
-**Month & Year Navigation:** Allows for the ability to select any month and any year from the current up until 2050.
+**Month & Year Navigation:** Allows for the ability to select any month and any year from the current up until 2050. The calendar properly displays leap years.
 
 **Event Conflict:** The program will warn the user if they are double booking a time slot by checking if an exsiting event is already scheduled at the same time and date.
+
+**Event Sorting:** Event data is sorted by start time when loaded, ensuring the events of the daya re displayed to the user in chronological order.
 
 **Real-Time Updating:** The calendar interface is immediately updated following the removal or adding of a event.
 
@@ -56,6 +58,17 @@ A secondary window will open on screen, enter the following event details:
 Select the day of the scheduled event to be removed by clicking on the day. Once highlighted, click on the "Remove Event" button in the bottom right corner. A secondary window will open, prompting you for the even name only. once entered click "Remove".
 
 https://github.com/user-attachments/assets/5ec99db2-c982-44a9-b4c9-98cb7254e46b
+
+## Month and Year Navigation
+Using the drop down menus at the very top of the window, select a desired month and year, from the current year till 2050 to view.
+
+https://github.com/user-attachments/assets/5119920e-7c41-40e2-a1b3-d4489a3c6070
+
+
+## License:
+
+Released under the [MIT license](https://github.com/Pookie119/calendarApp/blob/main/LICENSE).
+
 
 
 
